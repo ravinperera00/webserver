@@ -1,36 +1,15 @@
-#include "Server.h"
+#include "HTTPServer.h"
 #include <stdio.h>
-#include <string.h>
-#include <unistd.h>
-#include "HTTPRequest.h"
-#include <stdbool.h>
 
-void launch(struct Server *server)
+char *home(HTTPServer *server, HTTPRequest *request)
 {
-    char buffer[30000];
-    while (true)
-    {
-        printf("======== WAITING FOR CONNECTION ========\n");
-        int address_length = sizeof(server->address);
-        int new_socket = accept(server->socket, (struct sockaddr *)&server->address, (socklen_t *)&address_length);
-        read(new_socket, buffer, 30000);
-        printf("%s\n", buffer);
-        HTTPRequest request = http_request_constructor(buffer);
-        printf("HTTP Version: %s\n", (char *)request.request_line.search(&request.request_line, "http_version", sizeof("http_version")));
-        void *name = request.url_params.search(&request.url_params, "name", sizeof("name"));
-        if (name != NULL)
-        {
-            printf("Name: %s\n", (char *)name);
-        }
-        char *default_response = "HTTP/1.1 200 OK\nDate: Mon, 27 Jul 2009 12:28:53 GMT\nServer: Apache/2.2.14 (Win32)\nContent-Type: text/html\nConnection: Closed\n\n<html><body><h1>Hello, World!</h1></body></html>";
-        write(new_socket, default_response, strlen(default_response));
-        close(new_socket);
-    }
+    char *template = render_template(2, "/home/ravin/projects/webserver/templates/home1.html", "/home/ravin/projects/webserver/templates/home2.html");
+    return template;
 }
 
 int main()
 {
-    struct Server server = server_constructor(AF_INET, SOCK_STREAM, 0, INADDR_ANY, 80, 10, launch);
+    HTTPServer server = http_server_constructor();
+    server.register_routes(&server, home, "/", 1, GET);
     server.launch(&server);
-    return 0;
 }

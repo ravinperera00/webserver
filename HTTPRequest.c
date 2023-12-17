@@ -4,6 +4,7 @@
 #include "c_data_structures/Queue.h"
 #include <stdbool.h>
 #include <stdio.h>
+#include "HTTPServer.h"
 
 void extract_request_line(HTTPRequest *request, char *request_line);
 void extract_header_fields(HTTPRequest *request, char *header_fields);

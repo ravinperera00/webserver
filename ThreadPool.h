@@ -6,7 +6,7 @@
 
 typedef struct Task
 {
-    void (*task_fn)(void *);
+    void *(*task_fn)(void *);
     void *args;
 } Task;
 
@@ -19,10 +19,10 @@ typedef struct ThreadPool
     pthread_mutex_t mutex;
     pthread_cond_t cond;
 
-    void (*add_task)(struct ThreadPool *thread_pool, Task task);
+    void (*add_task)(struct ThreadPool *thread_pool, Task *task);
 } ThreadPool;
 
-ThreadPool thread_pool_constructor(int num_threads);
-Task task_constructor(void (*task_fn)(void *), void *args);
+ThreadPool *thread_pool_constructor(int num_threads);
+Task *task_constructor(void *(*task_fn)(void *arg), void *args);
 
 #endif // THREADPOOL_H

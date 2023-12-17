@@ -5,7 +5,7 @@
 #include <netinet/in.h>
 #include <sys/types.h>
 
-struct Server
+typedef struct Server
 {
     int domain;
     int service;
@@ -16,10 +16,8 @@ struct Server
     int socket;
 
     struct sockaddr_in address;
+} Server;
 
-    void (*launch)(struct Server *server);
-};
-
-struct Server server_constructor(int domain, int service, int protocol, u_long interface, int port, int backlog, void (*launch)(struct Server *server));
+Server server_constructor(int domain, int service, int protocol, u_long interface, int port, int backlog);
 
 #endif

@@ -3,19 +3,6 @@
 
 #include "c_data_structures/Dictionary.h"
 
-enum HTTPMethods
-{
-    GET,
-    POST,
-    PUT,
-    DELETE,
-    HEAD,
-    OPTIONS,
-    TRACE,
-    CONNECT,
-    PATCH
-};
-
 typedef struct HTTPRequest
 {
     Dictionary request_line;
