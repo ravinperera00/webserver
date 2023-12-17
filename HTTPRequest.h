@@ -1,6 +1,8 @@
 #ifndef HTTPREQUEST_H
 #define HTTPREQUEST_H
 
+#include "c_data_structures/Dictionary.h"
+
 enum HTTPMethods
 {
     GET,
@@ -14,14 +16,14 @@ enum HTTPMethods
     PATCH
 };
 
-struct HTTPRequest
+typedef struct HTTPRequest
 {
-    int method;
-    char *uri;
-    float http_version;
-};
+    Dictionary request_line;
+    Dictionary headers;
+    char *body;
+    Dictionary url_params;
+} HTTPRequest;
 
-struct HTTPRequest http_request_constructor(char *request_string);
-
+HTTPRequest http_request_constructor(char *request_string);
 
 #endif
