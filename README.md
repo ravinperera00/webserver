@@ -19,12 +19,14 @@ An example is given below.
 
     #include "HTTPServer.h"
     #include <stdio.h>
+
     char  *home(HTTPServer  *server,  HTTPRequest  *request)
     {
 	    int number_of_files = 2
 	    char  *template  =  render_template(number_of_files, "path1", "path2");
 	    return template;
 	}
+
 	int main()
 	{
 		HTTPServer  server = http_server_constructor();
@@ -36,6 +38,7 @@ An example is given below.
 
 ## Notes
 The project uses a custom library of data structures written in C. [Link](https://github.com/ravinperera00/c_data_structures)
+
 The library is extremely primitive and only appropriate for educational projects and not for any commercial use.
 
 Feel free to provide feedback on what I can improve and issue you face 🙌🏽. 
