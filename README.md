@@ -35,6 +35,8 @@ An example is given below.
 		return 0;
 	}
 
+ 5. Save and compile your project adding the webserver and pthread library as follows, `gcc <your files here> libwebserver.a -lpthread`
+ 6. Enjoy!
 
 ## Notes
 The project uses a custom library of data structures written in C. [Link](https://github.com/ravinperera00/c_data_structures)
