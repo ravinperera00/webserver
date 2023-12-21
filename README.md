@@ -43,4 +43,4 @@ The project uses a custom library of data structures written in C. [Link](https:
 
 The library is extremely primitive and only appropriate for educational projects and not for any commercial use.
 
-Feel free to provide feedback on what I can improve and issue you face 🙌🏽. 
+Feel free to provide feedback on what I can improve and issues you faced 🙌🏽. 
